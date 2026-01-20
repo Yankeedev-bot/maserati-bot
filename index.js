@@ -8,6 +8,7 @@ const {
 const fs = require('fs');
 const path = require('path');
 const qrcode = require('qrcode-terminal');
+const pino = require('pino');
 
 const PREFIX = '/';
 const BOT_NAME = '🔱★✨MASERATI†BOT✨★🔱';
@@ -25,22 +26,26 @@ function loadCommands() {
     const cmd = require(path.join(commandsDir, file));
     commands.set(cmd.name.toLowerCase(), cmd);
     if (cmd.aliases) cmd.aliases.forEach(alias => commands.set(alias.toLowerCase(), cmd));
-    console.log(`[CMD] Chargée : ${cmd.name}`);
+    console.log(`[MASERATI] Commande chargée : ${cmd.name}`);
   }
 }
 
-async function connectBot() {
-  const { state, saveCreds } = await useMultiFileAuthState('session_maserati');
+async function connectBot(attempt = 1) {
+  console.log(`[MASERATI] Tentative de connexion #${attempt}...`);
+
+  const { state, saveCreds } = await useMultiFileAuthState('session_maserati_business');
   const { version } = await fetchLatestBaileysVersion();
 
   const sock = makeWASocket({
     version,
     auth: state,
-    printQRInTerminal: true,               // QR toujours affiché en fallback
-    logger: require('pino')({ level: 'silent' }),
-    browser: Browsers.ubuntu('Chrome'),    // Config plus stable pour pairing
-    syncFullHistory: false,
-    markOnlineOnConnect: true
+    printQRInTerminal: true,
+    logger: pino({ level: 'silent' }), // Change à 'debug' si tu veux full logs
+    browser: Browsers.macOS('Chrome'), // Spoof Mac/Chrome → plus stable pour Business en 2026
+    markOnlineOnConnect: true,
+    syncFullHistory: false, // Pas besoin pour bot simple
+    connectTimeoutMs: 60000,
+    qrTimeout: 0 // Pas de timeout QR
   });
 
   sock.ev.on('creds.update', saveCreds);
@@ -49,53 +54,68 @@ async function connectBot() {
     const { connection, lastDisconnect, qr } = update;
 
     if (qr) {
-      console.log('\n🔗 QR fallback (scan si pairing bloque) :');
+      console.log(`\n[QR FALLBACK – SCAN ÇA DIRECTEMENT]`);
       qrcode.generate(qr, { small: true });
+      console.log(`[MASERATI] QR prêt – Ouvre WhatsApp Business > Appareils liés > Lier un appareil > Scanner`);
     }
 
     if (connection === 'close') {
-      const status = (lastDisconnect?.error)?.output?.statusCode;
-      console.log(`❌ Connexion fermée | Code: ${status || 'inconnu'} | Reconnexion ? ${status !== DisconnectReason.loggedOut}`);
-      if (status !== DisconnectReason.loggedOut) {
-        setTimeout(connectBot, 8000); // Re-tente après 8s
+      const status = lastDisconnect?.error?.output?.statusCode;
+      console.log(`[MASERATI] Connexion fermée | Code: ${status || 'inconnu'}`);
+      
+      if (status === DisconnectReason.loggedOut) {
+        console.log(`[MASERATI] Déconnexion forcée (logged out) → Supprime session_maserati_business et relance`);
+        fs.rmSync('session_maserati_business', { recursive: true, force: true });
+      } else if (status === 429) { // Rate limit
+        console.log(`[MASERATI] Rate limit 429 – Attente 5 min avant retry`);
+        setTimeout(() => connectBot(attempt + 1), 300000);
+      } else if (attempt < 5) {
+        console.log(`[MASERATI] Re-tentative dans 10s...`);
+        setTimeout(() => connectBot(attempt + 1), 10000);
       } else {
-        console.log('Session invalide (logged out) → supprime session_maserati et relance');
+        console.log(`[MASERATI] Échec après ${attempt} tentatives – Passe au QR scan manuellement`);
       }
     }
 
     if (connection === 'open') {
-      console.log(`\n${BOT_NAME} CONNECTÉ AVEC SUCCÈS ! ${THEME}\nPrêt à rouler 🏎️`);
+      console.log(`\n${BOT_NAME} CONNECTÉ FULL POWER ! ${THEME}`);
+      console.log(`[MASERATI] Prêt pour commandes – Teste /menu ou /meteo`);
     }
 
-    // Pairing code avec délai important (solution #1774)
+    // Pairing code ultra-robuste (délai long + custom key optionnelle)
     if ((connection === 'connecting' || update.isOnline) && !state.creds.registered) {
-      setTimeout(async () => {  // Délai 10 secondes pour laisser la connexion s'établir
+      setTimeout(async () => {
         try {
-          const phoneNumber = '2250585256740'; // ← TON NUMÉRO SANS + NI ESPACES
-          console.log('\n⏳ Génération pairing code (attente 10s terminée)...');
-          const code = await sock.requestPairingCode(phoneNumber);
-          
+          const phoneNumber = '2250585256740'; // ← VÉRIFIE 100% TON NUMÉRO BUSINESS (sans +, format 225XXXXXXXXXX)
+          // Option : custom pairing key (8 chars alphanum) pour éviter conflits
+          // const customPairKey = 'YANKEE01'; // Décommente si tu veux (optionnel)
+          // const code = await sock.requestPairingCode(phoneNumber, customPairKey);
+
+          const code = await sock.requestPairingCode(phoneNumber); // Sans custom key pour simplicité
+
           console.log(`
-╔════════════════════════════════════════════╗
-║     ${BOT_NAME}     ║
-║                                            ║
-║   CODE PAIRING :   ${code.padEnd(12)}   ║
-║   (entre-le vite dans WhatsApp !)          ║
-║                                            ║
-║   Appareils liés → Lier avec numéro        ║
-║   Créé par ${CREATOR} • ${CREATOR_NUMBER} ║
-╚════════════════════════════════════════════╝
+╔══════════════════════════════════════════════╗
+║         ${BOT_NAME} - BUSINESS MODE          ║
+║                                              ║
+║   CODE PAIRING BOOSTÉ :   ${code.padEnd(14)} ║
+║   (valide ~60s – entre vite !)               ║
+║                                              ║
+║   WhatsApp Business → Appareils liés         ║
+║   → Lier avec numéro de téléphone            ║
+║   Code : ${code}                             ║
+║                                              ║
+║   Par ${CREATOR} • ${CREATOR_NUMBER}        ║
+╚══════════════════════════════════════════════╝
           `);
         } catch (err) {
-          console.error('❌ Erreur pairing :', err.message || err);
-          console.log('→ Essaie le QR ci-dessus (scan-le depuis WhatsApp)');
-          console.log('→ Ou supprime le dossier "session_maserati" et relance');
+          console.error(`[MASERATI] Erreur pairing : ${err.message || err}`);
+          console.log(`[MASERATI] → Essaie le QR ci-dessus (scan Business) ou attends 5-10 min (rate limit)`);
         }
-      }, 10000); // 10 secondes de délai → clé du fix
+      }, 15000); // Délai 15s → laisse le temps à WhatsApp Business de stabiliser
     }
   });
 
-  // Gestion messages (inchangée)
+  // Messages (inchangé)
   sock.ev.on('messages.upsert', async (m) => {
     const msg = m.messages[0];
     if (!msg.message || msg.key.fromMe) return;
@@ -112,7 +132,7 @@ async function connectBot() {
         await cmd.execute(sock, msg, args);
       } catch (err) {
         console.error(`Erreur /${cmdName} :`, err);
-        await sock.sendMessage(msg.key.remoteJid, { text: `Erreur commande 😓 Réessaie ! ${THEME}` });
+        await sock.sendMessage(msg.key.remoteJid, { text: `Erreur commande 😓 Réessaie boss ! ${THEME}` });
       }
     }
   });
@@ -121,6 +141,4 @@ async function connectBot() {
 }
 
 loadCommands();
-connectBot().catch(err => {
-  console.error('Erreur fatale démarrage :', err);
-});
+connectBot().catch(err => console.error('[MASERATI] Erreur fatale :', err));
