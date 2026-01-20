@@ -1,0 +1,16 @@
+{
+  "name": "maserati-bot",
+  "version": "1.0.0",
+  "description": "🔱★✨MASERATI†BOT✨★🔱 - Bot WhatsApp Maserati par Yankee Hells",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.8",
+    "node-fetch": "^2.7.0",
+    "qrcode-terminal": "^0.12.0"
+  },
+  "author": "Christ Evrard (Yankee Hells) +2250585256740",
+  "license": "MIT"
+  }
