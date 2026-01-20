@@ -2,7 +2,8 @@ const {
   default: makeWASocket,
   useMultiFileAuthState,
   DisconnectReason,
-  fetchLatestBaileysVersion
+  fetchLatestBaileysVersion,
+  Browsers
 } = require('@whiskeysockets/baileys');
 const fs = require('fs');
 const path = require('path');
@@ -23,23 +24,23 @@ function loadCommands() {
   for (const file of files) {
     const cmd = require(path.join(commandsDir, file));
     commands.set(cmd.name.toLowerCase(), cmd);
-    if (cmd.aliases) {
-      cmd.aliases.forEach(alias => commands.set(alias.toLowerCase(), cmd));
-    }
+    if (cmd.aliases) cmd.aliases.forEach(alias => commands.set(alias.toLowerCase(), cmd));
     console.log(`[CMD] Chargée : ${cmd.name}`);
   }
 }
 
 async function connectBot() {
   const { state, saveCreds } = await useMultiFileAuthState('session_maserati');
-  const { version } = await fetchLatestBaileysVersion(); // Toujours la dernière version WhatsApp
+  const { version } = await fetchLatestBaileysVersion();
 
   const sock = makeWASocket({
     version,
     auth: state,
-    printQRInTerminal: true,
+    printQRInTerminal: true,               // QR toujours affiché en fallback
     logger: require('pino')({ level: 'silent' }),
-    browser: ['Chrome', 'Ubuntu', '22.04'], // Important pour pairing code
+    browser: Browsers.ubuntu('Chrome'),    // Config plus stable pour pairing
+    syncFullHistory: false,
+    markOnlineOnConnect: true
   });
 
   sock.ev.on('creds.update', saveCreds);
@@ -48,50 +49,53 @@ async function connectBot() {
     const { connection, lastDisconnect, qr } = update;
 
     if (qr) {
-      console.log('\nQR fallback (si pairing ne marche pas) :');
+      console.log('\n🔗 QR fallback (scan si pairing bloque) :');
       qrcode.generate(qr, { small: true });
     }
 
     if (connection === 'close') {
-      const shouldReconnect = (lastDisconnect?.error)?.output?.statusCode !== DisconnectReason.loggedOut;
-      console.log(`Connexion perdue → Reconnexion ? ${shouldReconnect}`);
-      if (shouldReconnect) setTimeout(connectBot, 5000); // Délai 5s pour éviter spam
+      const status = (lastDisconnect?.error)?.output?.statusCode;
+      console.log(`❌ Connexion fermée | Code: ${status || 'inconnu'} | Reconnexion ? ${status !== DisconnectReason.loggedOut}`);
+      if (status !== DisconnectReason.loggedOut) {
+        setTimeout(connectBot, 8000); // Re-tente après 8s
+      } else {
+        console.log('Session invalide (logged out) → supprime session_maserati et relance');
+      }
     }
 
     if (connection === 'open') {
-      console.log(`\n${BOT_NAME} CONNECTÉ ! ${THEME}\nPrêt à rouler 🏎️`);
+      console.log(`\n${BOT_NAME} CONNECTÉ AVEC SUCCÈS ! ${THEME}\nPrêt à rouler 🏎️`);
     }
 
-    // Pairing code : on le demande quand la connexion est en cours et pas encore enregistré
+    // Pairing code avec délai important (solution #1774)
     if ((connection === 'connecting' || update.isOnline) && !state.creds.registered) {
-      try {
-        // ← TON NUMÉRO ICI (sans + , sans espaces, format 225XXXXXXXXXX)
-        const phoneNumber = '2250585256740'; // CHANGE ÇA SI C'EST PAS TON NUMÉRO PRINCIPAL
-
-        console.log('\nGénération du code pairing en cours...');
-        const code = await sock.requestPairingCode(phoneNumber);
-
-        console.log(`
+      setTimeout(async () => {  // Délai 10 secondes pour laisser la connexion s'établir
+        try {
+          const phoneNumber = '2250585256740'; // ← TON NUMÉRO SANS + NI ESPACES
+          console.log('\n⏳ Génération pairing code (attente 10s terminée)...');
+          const code = await sock.requestPairingCode(phoneNumber);
+          
+          console.log(`
 ╔════════════════════════════════════════════╗
 ║     ${BOT_NAME}     ║
 ║                                            ║
 ║   CODE PAIRING :   ${code.padEnd(12)}   ║
+║   (entre-le vite dans WhatsApp !)          ║
 ║                                            ║
-║   WhatsApp → Appareils liés                ║
-║   → Lier avec numéro de téléphone          ║
-║   Entre ce code : ${code}                  ║
-║                                            ║
+║   Appareils liés → Lier avec numéro        ║
 ║   Créé par ${CREATOR} • ${CREATOR_NUMBER} ║
 ╚════════════════════════════════════════════╝
-        `);
-      } catch (err) {
-        console.error('Erreur pairing :', err.message);
-        console.log('Essaie le QR ci-dessus ou relance le bot.');
-      }
+          `);
+        } catch (err) {
+          console.error('❌ Erreur pairing :', err.message || err);
+          console.log('→ Essaie le QR ci-dessus (scan-le depuis WhatsApp)');
+          console.log('→ Ou supprime le dossier "session_maserati" et relance');
+        }
+      }, 10000); // 10 secondes de délai → clé du fix
     }
   });
 
-  // Messages entrants
+  // Gestion messages (inchangée)
   sock.ev.on('messages.upsert', async (m) => {
     const msg = m.messages[0];
     if (!msg.message || msg.key.fromMe) return;
@@ -107,8 +111,8 @@ async function connectBot() {
       try {
         await cmd.execute(sock, msg, args);
       } catch (err) {
-        console.error(`Erreur commande ${cmdName} :`, err);
-        await sock.sendMessage(msg.key.remoteJid, { text: `Erreur sur /${cmdName} 😓\nRéessaie ! ${THEME}` });
+        console.error(`Erreur /${cmdName} :`, err);
+        await sock.sendMessage(msg.key.remoteJid, { text: `Erreur commande 😓 Réessaie ! ${THEME}` });
       }
     }
   });
@@ -116,6 +120,7 @@ async function connectBot() {
   return sock;
 }
 
-// Démarrage
 loadCommands();
-connectBot().catch(err => console.error('Erreur démarrage bot :', err));
+connectBot().catch(err => {
+  console.error('Erreur fatale démarrage :', err);
+});
