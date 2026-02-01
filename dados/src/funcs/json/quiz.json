@@ -1,0 +1,61 @@
+{
+  "geral": [
+    { "p": "Quel est le plus grand planète du système solaire ?", "r": ["jupiter", "júpiter"], "d": "Jupiter – le roi des planètes, digne d’un V8 Maserati" },
+    { "p": "Combien d’os possède le corps humain adulte ?", "r": ["206"], "d": "206 – une structure parfaite, comme le châssis d’un MC20" },
+    { "p": "Quel est l’élément chimique représenté par le symbole 'O' ?", "r": ["oxygène", "oxigeno"], "d": "Oxygène – l’air qui fait vrombir les moteurs" },
+    { "p": "En quelle année le Brésil a-t-il été découvert ?", "r": ["1500"], "d": "1500 – l’année où le monde a commencé à rouler en mode découverte" },
+    { "p": "Quelle est la capitale de l’Australie ?", "r": ["canberra"], "d": "Canberra – discrète mais puissante, comme un GranTurismo en ville" },
+    { "p": "Combien de continents existe-t-il sur Terre ?", "r": ["7", "sept"], "d": "7 – sept continents, sept raisons de dominer la route" },
+    { "p": "Quel est le plus grand océan du monde ?", "r": ["pacifique"], "d": "Pacifique – immense et profond, comme l’océan de puissance d’un Trofeo" },
+    { "p": "Qui a peint la Joconde ?", "r": ["leonardo da vinci", "da vinci"], "d": "Léonard de Vinci – génie absolu, précurseur du luxe italien" },
+    { "p": "Quelle est la capitale du Brésil ?", "r": ["brasília"], "d": "Brasília – moderne et majestueuse, capitale du style" },
+    { "p": "Combien d’États compte le Brésil ?", "r": ["26"], "d": "26 États + Distrito Federal – une fédération prête à rouler" }
+  ],
+  "anime": [
+    { "p": "Quel est le nom du protagoniste de Naruto ?", "r": ["naruto", "naruto uzumaki"], "d": "Naruto Uzumaki – l’énergie brute d’un moteur surboosté" },
+    { "p": "Dans Death Note, quel est le nom du shinigami qui donne le carnet à Light ?", "r": ["ryuk"], "d": "Ryuk – le chaos élégant, comme un drift en pleine nuit" },
+    { "p": "Quel est le nom du Titan d’Eren dans L’Attaque des Titans ?", "r": ["titan assaillant", "attack titan"], "d": "Titã Assaillant – force destructrice digne d’un V8" },
+    { "p": "Combien de Dragon Balls faut-il pour invoquer Shenron ?", "r": ["7", "sept"], "d": "7 – sept sphères pour un vœu, sept raisons de briller" },
+    { "p": "Quel est le nom du grand frère de Luffy dans One Piece ?", "r": ["ace", "portgas d ace"], "d": "Ace – feu et passion, comme un échappement sport" },
+    { "p": "Dans quel anime apparaît Goku ?", "r": ["dragon ball"], "d": "Dragon Ball – puissance infinie, esprit Maserati" },
+    { "p": "Quel est le nom de l’organisation ennemie dans Naruto Shippuden ?", "r": ["akatsuki"], "d": "Akatsuki – ombre et mystère, comme une nuit à Monaco" }
+  ],
+  "games": [
+    { "p": "Quel est le nom du personnage principal de The Legend of Zelda ?", "r": ["link"], "d": "Link – héros silencieux, maître des quêtes" },
+    { "p": "En quelle année est sorti le premier Minecraft ?", "r": ["2011"], "d": "2011 – l’année où les blocs sont devenus légende" },
+    { "p": "Quel est le nom de la princesse dans Super Mario ?", "r": ["peach"], "d": "Princesse Peach – élégance et pouvoir rose" },
+    { "p": "Combien de joueurs composent une équipe en CS:GO/CS2 ?", "r": ["5", "cinq"], "d": "5 – cinq joueurs, une seule victoire" },
+    { "p": "Quelle entreprise a créé Fortnite ?", "r": ["epic games"], "d": "Epic Games – bâtisseur d’univers épiques" }
+  ],
+  "ciencia": [
+    { "p": "Quelle est la formule chimique de l’eau ?", "r": ["h2o"], "d": "H₂O – la base de toute accélération vitale" },
+    { "p": "Combien de planètes compte le système solaire ?", "r": ["8", "huit"], "d": "8 – huit mondes, huit cylindres de puissance cosmique" },
+    { "p": "Quelle est la vitesse de la lumière (approximative) ?", "r": ["300000"], "d": "~300 000 km/s – vitesse ultime, même un MC20 ne suit pas" },
+    { "p": "Qui a formulé la théorie de la relativité ?", "r": ["einstein"], "d": "Albert Einstein – génie absolu, esprit trident" },
+    { "p": "Quel est le symbole chimique de l’or ?", "r": ["au"], "d": "Au – l’or, métal noble du luxe Maserati" }
+  ],
+  "historia": [
+    { "p": "En quelle année a commencé la Seconde Guerre mondiale ?", "r": ["1939"], "d": "1939 – l’histoire a changé de vitesse" },
+    { "p": "Qui fut le premier président du Brésil ?", "r": ["deodoro"], "d": "Marechal Deodoro da Fonseca – pionnier de la république" },
+    { "p": "En quelle année l’homme a-t-il marché sur la Lune ?", "r": ["1969"], "d": "1969 – l’année où l’humanité a touché les étoiles" },
+    { "p": "Quelle civilisation a construit les pyramides de Gizeh ?", "r": ["égyptienne"], "d": "Égyptienne – bâtisseurs de merveilles éternelles" },
+    { "p": "Qui a découvert le Brésil ?", "r": ["pedro alvares cabral"], "d": "Pedro Álvares Cabral – le navigateur qui a ouvert la route" }
+  ],
+  "geografia": [
+    { "p": "Quel est le plus grand pays du monde en superficie ?", "r": ["russie"], "d": "Russie – immense comme un empire Maserati" },
+    { "p": "Quel est le plus petit pays du monde ?", "r": ["vatican"], "d": "Vatican – petit en taille, immense en prestige" },
+    { "p": "Quel est le plus grand océan du monde ?", "r": ["pacifique"], "d": "Pacifique – l’océan qui engloutit les horizons" },
+    { "p": "Quel est le fleuve le plus long du monde ?", "r": ["nilo"], "d": "Nil – le roi des fleuves, source de vie" },
+    { "p": "Quelle est la montagne la plus haute du monde ?", "r": ["everest"], "d": "Everest – sommet absolu, défi trident" }
+  ],
+  "esportes": [
+    { "p": "Combien de joueurs sont sur le terrain en football ?", "r": ["11"], "d": "11 – onze guerriers pour une seule victoire" },
+    { "p": "Quel est le sport le plus populaire au Brésil ?", "r": ["football"], "d": "Football – religion nationale, passion Maserati" },
+    { "p": "Combien de sets dans un match de tennis (hommes) ?", "r": ["5"], "d": "5 sets – endurance digne d’un GranTurismo" },
+    { "p": "Quel est le plus grand tournoi de football au monde ?", "r": ["coupe du monde"], "d": "Coupe du Monde – le Graal du ballon rond" },
+    { "p": "Combien de joueurs sur le terrain en basket ?", "r": ["5"], "d": "5 – cinq athlètes, une seule équipe" }
+  ],
+  "theme": "Maserati Quiz Prestige 🏎️👑✨🇨🇮",
+  "createur": "yankee Hells 🙂",
+  "description": "Collection de questions/réponses pour quiz Maserati-Bot – culture générale, anime, jeux, science, histoire, géographie et sport. Teste ton cerveau à pleine vitesse !"
+    }
