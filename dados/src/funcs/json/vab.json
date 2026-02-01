@@ -1,0 +1,399 @@
+{
+  "categorias": [
+    {
+      "option1": "porter des chaussettes trouées",
+      "option2": "porter des chaussures sales"
+    },
+    {
+      "option1": "être toujours 10 minutes en retard",
+      "option2": "être toujours 20 minutes en avance"
+    },
+    {
+      "option1": "savoir lire sur les lèvres",
+      "option2": "savoir la langue des signes"
+    },
+    {
+      "option1": "être fluent dans toutes les langues",
+      "option2": "savoir jouer de tous les instruments de musique"
+    },
+    {
+      "option1": "être toujours coincé dans les embouteillages",
+      "option2": "avoir une connexion internet pourrie"
+    },
+    {
+      "option1": "être enlevé par des aliens",
+      "option2": "être possédé par un démon"
+    },
+    {
+      "option1": "pouvoir voler",
+      "option2": "pouvoir devenir invisible"
+    },
+    {
+      "option1": "vivre 100 ans dans le passé",
+      "option2": "vivre 100 ans dans le futur"
+    },
+    {
+      "option1": "participer à une télé-réalité",
+      "option2": "rester au chômage pendant 2 ans"
+    },
+    {
+      "option1": "vivre 25 ans de plus",
+      "option2": "vivre sans avoir besoin de dormir"
+    },
+    {
+      "option1": "sauver un membre de ta famille",
+      "option2": "sauver 1 000 inconnus"
+    },
+    {
+      "option1": "avoir 10 chiots",
+      "option2": "avoir 10 chatons"
+    },
+    {
+      "option1": "avoir toujours trop chaud",
+      "option2": "avoir toujours trop froid"
+    },
+    {
+      "option1": "avoir toujours une pierre dans la chaussure",
+      "option2": "avoir toujours une poussière dans l’œil"
+    },
+    {
+      "option1": "pouvoir revoir tes rêves en vidéo",
+      "option2": "pouvoir t’endormir en claquant des doigts"
+    },
+    {
+      "option1": "être coincé dans un téléphérique en panne",
+      "option2": "être coincé dans un ascenseur en panne"
+    },
+    {
+      "option1": "manger de la pizza tous les jours",
+      "option2": "manger des pâtes tous les jours"
+    },
+    {
+      "option1": "être payé pour lire des livres",
+      "option2": "regarder la télé toute la journée"
+    },
+    {
+      "option1": "se débarrasser de tous les mauvais conducteurs",
+      "option2": "ne plus jamais faire la queue"
+    },
+    {
+      "option1": "avoir un gros salaire dans un boulot que tu détestes",
+      "option2": "avoir un petit salaire dans un boulot que tu adores"
+    },
+    {
+      "option1": "être seul dans la forêt poursuivi par un ours",
+      "option2": "se faire casser trois dents avec un marteau"
+    },
+    {
+      "option1": "être obligé d’obéir à quelqu’un que tu détestes",
+      "option2": "donner des ordres horribles à quelqu’un que tu aimes"
+    },
+    {
+      "option1": "être malade pour le reste de ta vie",
+      "option2": "tuer un chaton"
+    },
+    {
+      "option1": "ne pas pouvoir avoir d’enfants",
+      "option2": "ne pouvoir concevoir que des quintuplés"
+    },
+    {
+      "option1": "ne pas avoir de famille",
+      "option2": "ne pas avoir d’amis"
+    },
+    {
+      "option1": "lécher le sol d’une station de métro à New York",
+      "option2": "lécher la cuvette d’un WC public"
+    },
+    {
+      "option1": "perdre tous tes souvenirs jusqu’à maintenant",
+      "option2": "oublier chaque jour ce qui s’est passé la veille"
+    },
+    {
+      "option1": "jouer à la roulette russe avec trois balles pour 5 000 000 €",
+      "option2": "jouer à la roulette russe avec une balle pour 100 000 €"
+    },
+    {
+      "option1": "tuer une personne innocente",
+      "option2": "tuer cinq personnes qui ont commis des délits mineurs"
+    },
+    {
+      "option1": "te cogner le petit orteil contre un coin de meuble tous les jours",
+      "option2": "ne prendre une douche que deux fois par semaine"
+    },
+    {
+      "option1": "ne pas avoir de coudes",
+      "option2": "ne pas avoir de genoux"
+    },
+    {
+      "option1": "sentir toujours le chien mouillé",
+      "option2": "sentir toujours le bouc"
+    },
+    {
+      "option1": "avoir toujours faim",
+      "option2": "avoir toujours soif"
+    },
+    {
+      "option1": "devoir toujours dire tes pensées à voix haute",
+      "option2": "ne plus jamais pouvoir parler (ni en langue des signes)"
+    },
+    {
+      "option1": "être enterré jusqu’au cou sous le soleil pendant 8 heures",
+      "option2": "être enterré jusqu’au cou entouré de fourmis de feu pendant 20 minutes"
+    },
+    {
+      "option1": "être complètement fou et savoir que tu l’es",
+      "option2": "être complètement fou et croire que tu es sain d’esprit"
+    },
+    {
+      "option1": "être enfermé dans une pièce constamment sombre pendant une semaine",
+      "option2": "être enfermé dans une pièce constamment éclairée pendant une semaine"
+    },
+    {
+      "option1": "mourir gelé",
+      "option2": "mourir brûlé"
+    },
+    {
+      "option1": "te faire un énorme tatouage sur la poitrine avec le nom de ton partenaire",
+      "option2": "te faire un petit tatouage de son visage sur ton bras"
+    },
+    {
+      "option1": "que tous les animaux que tu touches meurent",
+      "option2": "que tous les ordinateurs que tu touches plantent"
+    },
+    {
+      "option1": "avoir une super-force",
+      "option2": "avoir une super-vitesse"
+    },
+    {
+      "option1": "être riche et malheureux",
+      "option2": "être pauvre et heureux"
+    },
+    {
+      "option1": "vivre sans musique",
+      "option2": "vivre sans films"
+    },
+    {
+      "option1": "avoir la capacité de lire dans les pensées",
+      "option2": "avoir la capacité de te téléporter"
+    },
+    {
+      "option1": "ne plus jamais pouvoir manger de sucré",
+      "option2": "ne plus jamais pouvoir manger de salé"
+    },
+    {
+      "option1": "avoir une voiture volante",
+      "option2": "avoir une maison sous-marine"
+    },
+    {
+      "option1": "être célèbre pendant 1 an",
+      "option2": "être anonyme pour toujours"
+    },
+    {
+      "option1": "avoir le pouvoir de contrôler le temps",
+      "option2": "avoir le pouvoir de contrôler la météo"
+    },
+    {
+      "option1": "toujours perdre tes clés",
+      "option2": "toujours perdre ton téléphone"
+    },
+    {
+      "option1": "avoir un chien qui parle",
+      "option2": "avoir un chat qui cuisine"
+    },
+    {
+      "option1": "ne plus jamais pouvoir utiliser les réseaux sociaux",
+      "option2": "ne plus jamais pouvoir regarder la télé"
+    },
+    {
+      "option1": "avoir la capacité de parler aux animaux",
+      "option2": "avoir la capacité de parler toutes les langues humaines"
+    },
+    {
+      "option1": "toujours te réveiller tôt",
+      "option2": "toujours te coucher tard"
+    },
+    {
+      "option1": "avoir un boulot chiant qui paie très bien",
+      "option2": "avoir un boulot génial qui paie mal"
+    },
+    {
+      "option1": "vivre sans internet",
+      "option2": "vivre sans clim"
+    },
+    {
+      "option1": "avoir la capacité d’arrêter le temps",
+      "option2": "avoir la capacité de revenir dans le temps"
+    },
+    {
+      "option1": "toujours connaître la vérité",
+      "option2": "toujours croire aux mensonges"
+    },
+    {
+      "option1": "avoir un super-pouvoir mais ne jamais pouvoir le dire à personne",
+      "option2": "ne pas avoir de super-pouvoir mais tout le monde pense que tu en as un"
+    },
+    {
+      "option1": "pouvoir voler mais seulement à 1 mètre du sol",
+      "option2": "pouvoir devenir invisible mais seulement pendant 10 secondes"
+    },
+    {
+      "option1": "toujours devoir porter des vêtements chauds quand il fait chaud",
+      "option2": "toujours devoir porter des vêtements légers quand il fait froid"
+    },
+    {
+      "option1": "avoir 1 million d’euros tout de suite",
+      "option2": "avoir 1000 € par mois pour toujours"
+    },
+    {
+      "option1": "être un génie en mathématiques",
+      "option2": "être un génie en arts"
+    },
+    {
+      "option1": "avoir la capacité de guérir n’importe quelle maladie",
+      "option2": "avoir la capacité d’éliminer la faim dans le monde"
+    },
+    {
+      "option1": "toujours gagner aux jeux de hasard",
+      "option2": "toujours gagner aux jeux de compétence"
+    },
+    {
+      "option1": "avoir la mémoire d’un éléphant",
+      "option2": "avoir l’agilité d’un guépard"
+    },
+    {
+      "option1": "vivre dans un monde sans couleurs",
+      "option2": "vivre dans un monde sans sons"
+    },
+    {
+      "option1": "avoir la capacité de lire un livre en 1 minute",
+      "option2": "avoir la capacité de regarder un film en 5 minutes"
+    },
+    {
+      "option1": "toujours devoir parler en rimant",
+      "option2": "toujours devoir parler en vers"
+    },
+    {
+      "option1": "avoir un super-pouvoir qui ne fonctionne que la nuit",
+      "option2": "avoir un super-pouvoir qui ne fonctionne que le jour"
+    },
+    {
+      "option1": "pouvoir arrêter de vieillir",
+      "option2": "pouvoir revenir à n’importe quel âge que tu veux"
+    },
+    {
+      "option1": "avoir la capacité de parler avec tes ancêtres",
+      "option2": "avoir la capacité de parler avec tes descendants"
+    },
+    {
+      "option1": "toujours devoir porter des lunettes de soleil, même la nuit",
+      "option2": "toujours devoir porter un chapeau, même à l’intérieur"
+    },
+    {
+      "option1": "avoir une carte qui montre où se trouve n’importe quoi de perdu",
+      "option2": "avoir une montre qui montre le temps qu’il te reste à vivre"
+    },
+    {
+      "option1": "pouvoir te transformer en n’importe quel animal",
+      "option2": "pouvoir te transformer en n’importe quelle personne"
+    },
+    {
+      "option1": "avoir un jardin qui pousse de la nourriture instantanément",
+      "option2": "avoir un arbre qui donne de l’argent"
+    },
+    {
+      "option1": "toujours devoir marcher sur la tête",
+      "option2": "toujours devoir marcher à reculons"
+    },
+    {
+      "option1": "avoir la capacité de voir dans le noir",
+      "option2": "avoir la capacité de voir à travers les murs"
+    },
+    {
+      "option1": "pouvoir arrêter le temps 1 heure par jour",
+      "option2": "pouvoir revenir 1 heure en arrière par jour"
+    },
+    {
+      "option1": "avoir un assistant personnel robot",
+      "option2": "avoir une voiture autonome qui conduit toute seule"
+    },
+    {
+      "option1": "toujours devoir parler à voix haute",
+      "option2": "toujours devoir chuchoter"
+    },
+    {
+      "option1": "avoir la capacité de te cloner",
+      "option2": "avoir la capacité de te téléporter"
+    },
+    {
+      "option1": "pouvoir prévoir la météo à 100 %",
+      "option2": "pouvoir prévoir les embouteillages à 100 %"
+    },
+    {
+      "option1": "avoir un livre qui écrit tes histoires tout seul",
+      "option2": "avoir un journal qui révèle les secrets du futur"
+    },
+    {
+      "option1": "toujours devoir porter des vêtements de super-héros",
+      "option2": "toujours devoir porter des vêtements de clown"
+    },
+    {
+      "option1": "avoir la capacité de communiquer avec les extraterrestres",
+      "option2": "avoir la capacité de communiquer avec les fantômes"
+    },
+    {
+      "option1": "pouvoir manger autant que tu veux sans grossir",
+      "option2": "pouvoir dormir autant que tu veux sans être fatigué"
+    },
+    {
+      "option1": "avoir un téléphone qui ne se décharge jamais",
+      "option2": "avoir un ordinateur qui ne plante jamais"
+    },
+    {
+      "option1": "toujours devoir aller à vélo",
+      "option2": "toujours devoir aller en trottinette"
+    },
+    {
+      "option1": "avoir la capacité de devenir invisible 1 heure par jour",
+      "option2": "avoir la capacité de voler 1 heure par jour"
+    },
+    {
+      "option1": "pouvoir lire un livre en 5 minutes",
+      "option2": "pouvoir regarder un film en 10 minutes"
+    },
+    {
+      "option1": "avoir une montre qui ajoute 1 heure à ta journée",
+      "option2": "avoir une montre qui fige le temps pendant 1 heure"
+    },
+    {
+      "option1": "toujours devoir porter des vêtements de bain",
+      "option2": "toujours devoir porter des vêtements chauds"
+    },
+    {
+      "option1": "avoir la capacité de te transformer en eau",
+      "option2": "avoir la capacité de te transformer en feu"
+    },
+    {
+      "option1": "pouvoir parler aux plantes et les faire pousser instantanément",
+      "option2": "pouvoir parler aux animaux et qu’ils t’obéissent"
+    },
+    {
+      "option1": "avoir un parapluie qui te fait flotter",
+      "option2": "avoir un chapeau qui te rend invisible"
+    },
+    {
+      "option1": "toujours devoir manger des plats épicés",
+      "option2": "toujours devoir manger des plats sucrés"
+    },
+    {
+      "option1": "avoir la capacité de te transformer en arc-en-ciel",
+      "option2": "avoir la capacité de te transformer en tempête"
+    },
+    {
+      "option1": "pouvoir communiquer avec le soleil",
+      "option2": "pouvoir communiquer avec les nuages"
+    }
+  ],
+  "theme": "Maserati Dilemme Prestige 🏎️👑✨🇨🇮",
+  "createur": "yankee Hells 🙂",
+  "description": "Questions dilemme pour Maserati-Bot – choix impossibles, humour et luxe ivoirien. Vroum vroum dans les décisions !"
+    }
