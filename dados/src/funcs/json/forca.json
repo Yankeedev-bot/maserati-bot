@@ -1,0 +1,503 @@
+{
+  "palavras": [
+    {
+      "palavra": "éléphant",
+      "dica": "Majestueux géant à la trompe puissante"
+    },
+    {
+      "palavra": "ordinateur",
+      "dica": "Machine de précision qui domine le futur"
+    },
+    {
+      "palavra": "chocolat",
+      "dica": "Luxe noir et fondant, plaisir absolu"
+    },
+    {
+      "palavra": "ananas",
+      "dica": "Couronne tropicale, fruit royal"
+    },
+    {
+      "palavra": "bibliothèque",
+      "dica": "Sanctuaire du savoir et de l’élégance"
+    },
+    {
+      "palavra": "caïman",
+      "dica": "Reptile redoutable des rivières ivoiriennes"
+    },
+    {
+      "palavra": "guitare",
+      "dica": "Âme vibrante aux cordes d’or"
+    },
+    {
+      "palavra": "papillon",
+      "dica": "Joyau ailé aux couleurs éclatantes"
+    },
+    {
+      "palavra": "astronaute",
+      "dica": "Explorateur des étoiles, maître des cieux"
+    },
+    {
+      "palavra": "dinosaure",
+      "dica": "Légende préhistorique de puissance brute"
+    },
+    {
+      "palavra": "pizza",
+      "dica": "Roi italien des saveurs rondes et généreuses"
+    },
+    {
+      "palavra": "football",
+      "dica": "Passion nationale qui fait vibrer les stades"
+    },
+    {
+      "palavra": "arc-en-ciel",
+      "dica": "Palette divine après la pluie tropicale"
+    },
+    {
+      "palavra": "téléphone",
+      "dica": "Connecteur portable de luxe et de vitesse"
+    },
+    {
+      "palavra": "océan",
+      "dica": "Immensité bleue, force infinie"
+    },
+    {
+      "palavra": "volcan",
+      "dica": "Géant de feu qui impose le respect"
+    },
+    {
+      "palavra": "pingouin",
+      "dica": "Gentleman glacé, roi de l’Antarctique"
+    },
+    {
+      "palavra": "cascade",
+      "dica": "Chute majestueuse, symphonie d’eau pure"
+    },
+    {
+      "palavra": "horloge",
+      "dica": "Gardienne impitoyable du temps qui file"
+    },
+    {
+      "palavra": "licorne",
+      "dica": "Mythe scintillant de grâce et de magie"
+    },
+    {
+      "palavra": "girafe",
+      "dica": "Reine élancée aux yeux perçants"
+    },
+    {
+      "palavra": "hélicoptère",
+      "dica": "Aigle mécanique aux pales puissantes"
+    },
+    {
+      "palavra": "école",
+      "dica": "Temple du savoir et de l’avenir"
+    },
+    {
+      "palavra": "hôpital",
+      "dica": "Citadelle de soin et d’espoir"
+    },
+    {
+      "palavra": "chien",
+      "dica": "Allié fidèle au cœur d’or"
+    },
+    {
+      "palavra": "chat",
+      "dica": "Seigneur indépendant au regard mystérieux"
+    },
+    {
+      "palavra": "lion",
+      "dica": "Roi incontesté de la savane"
+    },
+    {
+      "palavra": "tigre",
+      "dica": "Félin royal aux rayures légendaires"
+    },
+    {
+      "palavra": "ours",
+      "dica": "Colosse velu, force tranquille"
+    },
+    {
+      "palavra": "singe",
+      "dica": "Acrobate espiègle des cimes"
+    },
+    {
+      "palavra": "cheval",
+      "dica": "Destrier noble et rapide"
+    },
+    {
+      "palavra": "vache",
+      "dica": "Reine paisible des pâturages"
+    },
+    {
+      "palavra": "cochon",
+      "dica": "Joyeux roi de la boue"
+    },
+    {
+      "palavra": "poule",
+      "dica": "Dame fière pondeuse d’or"
+    },
+    {
+      "palavra": "canard",
+      "dica": "Nageur élégant aux plumes brillantes"
+    },
+    {
+      "palavra": "abeille",
+      "dica": "Ouvrière dorée, reine du miel"
+    },
+    {
+      "palavra": "fourmi",
+      "dica": "Guerrière minuscule à la discipline de fer"
+    },
+    {
+      "palavra": "araignée",
+      "dica": "Artiste tisseuse de toiles parfaites"
+    },
+    {
+      "palavra": "serpent",
+      "dica": "Reptile silencieux et mystérieux"
+    },
+    {
+      "palavra": "poisson",
+      "dica": "Danseur gracieux des abysses"
+    },
+    {
+      "palavra": "requin",
+      "dica": "Prédateur suprême des océans"
+    },
+    {
+      "palavra": "dauphin",
+      "dica": "Génie marin au sourire éternel"
+    },
+    {
+      "palavra": "baleine",
+      "dica": "Géante bleue, chant de l’océan"
+    },
+    {
+      "palavra": "tortue",
+      "dica": "Sage voyageuse à la carapace sacrée"
+    },
+    {
+      "palavra": "lapin",
+      "dica": "Bondissant roi des oreilles longues"
+    },
+    {
+      "palavra": "rat",
+      "dica": "Petit survivant astucieux"
+    },
+    {
+      "palavra": "écureuil",
+      "dica": "Acrobate roux aux réserves ingénieuses"
+    },
+    {
+      "palavra": "hibou",
+      "dica": "Sage nocturne aux yeux perçants"
+    },
+    {
+      "palavra": "aigle",
+      "dica": "Seigneur des cimes, regard d’acier"
+    },
+    {
+      "palavra": "perroquet",
+      "dica": "Bavard coloré aux plumes d’arc-en-ciel"
+    },
+    {
+      "palavra": "flamingo",
+      "dica": "Princesse rose sur pattes fines"
+    },
+    {
+      "palavra": "paon",
+      "dica": "Roi vaniteux aux plumes royales"
+    },
+    {
+      "palavra": "chameau",
+      "dica": "Navire du désert à la résilience légendaire"
+    },
+    {
+      "palavra": "zèbre",
+      "dica": "Artiste rayé, maître du camouflage"
+    },
+    {
+      "palavra": "hippopotame",
+      "dica": "Colosse aquatique au tempérament de feu"
+    },
+    {
+      "palavra": "rhinocéros",
+      "dica": "Guerrier blindé au cor mythique"
+    },
+    {
+      "palavra": "crocodile",
+      "dica": "Prédateur ancestral des rivières"
+    },
+    {
+      "palavra": "lézard",
+      "dica": "Reptile agile aux reflets solaires"
+    },
+    {
+      "palavra": "crapaud",
+      "dica": "Sautillant roi des mares"
+    },
+    {
+      "palavra": "grenouille",
+      "dica": "Princesse verte des étangs"
+    },
+    {
+      "palavra": "crabe",
+      "dica": "Guerrier latéral aux pinces d’acier"
+    },
+    {
+      "palavra": "homard",
+      "dica": "Roi rouge des fonds marins"
+    },
+    {
+      "palavra": "pieuvre",
+      "dica": "Génie à huit bras, maître du camouflage"
+    },
+    {
+      "palavra": "calmar",
+      "dica": "Fantôme des abysses aux dix tentacules"
+    },
+    {
+      "palavra": "étoile",
+      "dica": "Joyau céleste qui guide les rêves"
+    },
+    {
+      "palavra": "lune",
+      "dica": "Reine argentée de la nuit"
+    },
+    {
+      "palavra": "soleil",
+      "dica": "Roi flamboyant du jour"
+    },
+    {
+      "palavra": "planète",
+      "dica": "Monde orbitant dans l’infini"
+    },
+    {
+      "palavra": "comète",
+      "dica": "Voyageuse céleste à la queue de feu"
+    },
+    {
+      "palavra": "météore",
+      "dica": "Étoile filante qui traverse les cieux"
+    },
+    {
+      "palavra": "galaxie",
+      "dica": "Vaste empire d’étoiles infinies"
+    },
+    {
+      "palavra": "univers",
+      "dica": "Tout ce qui existe, mystère absolu"
+    },
+    {
+      "palavra": "télescope",
+      "dica": "Œil géant braqué sur les étoiles"
+    },
+    {
+      "palavra": "fusée",
+      "dica": "Flèche de feu vers les confins"
+    },
+    {
+      "palavra": "satellite",
+      "dica": "Gardien silencieux en orbite"
+    },
+    {
+      "palavra": "avion",
+      "dica": "Aigle d’acier qui défie les nuages"
+    },
+    {
+      "palavra": "navire",
+      "dica": "Géant des mers, roi des océans"
+    },
+    {
+      "palavra": "sous-marin",
+      "dica": "Fantôme d’acier sous les vagues"
+    },
+    {
+      "palavra": "train",
+      "dica": "Serpent d’acier sur rails d’argent"
+    },
+    {
+      "palavra": "bus",
+      "dica": "Cheval de fer du peuple"
+    },
+    {
+      "palavra": "vélo",
+      "dica": "Liberté à deux roues"
+    },
+    {
+      "palavra": "moto",
+      "dica": "Fauve rugissant sur l’asphalte"
+    },
+    {
+      "palavra": "voiture",
+      "dica": "Bolide d’élégance et de vitesse"
+    },
+    {
+      "palavra": "camion",
+      "dica": "Colosse des routes, porteur de rêves"
+    },
+    {
+      "palavra": "bateau",
+      "dica": "Étoile flottante sur l’eau"
+    },
+    {
+      "palavra": "canoë",
+      "dica": "Flèche silencieuse des rivières"
+    },
+    {
+      "palavra": "yacht",
+      "dica": "Palais des mers, luxe absolu"
+    },
+    {
+      "palavra": "pomme",
+      "dica": "Fruit croquant, symbole de tentation"
+    },
+    {
+      "palavra": "banane",
+      "dica": "Courbe jaune, douceur tropicale"
+    },
+    {
+      "palavra": "orange",
+      "dica": "Sphère solaire pleine de vitamine"
+    },
+    {
+      "palavra": "raisin",
+      "dica": "Joyaux violets en grappes royales"
+    },
+    {
+      "palavra": "fraise",
+      "dica": "Rubis parfumé des jardins"
+    },
+    {
+      "palavra": "mangue",
+      "dica": "Reine dorée des tropiques"
+    },
+    {
+      "palavra": "pastèque",
+      "dica": "Géante verte au cœur rouge et frais"
+    },
+    {
+      "palavra": "avocat",
+      "dica": "Perle verte, crème onctueuse"
+    },
+    {
+      "palavra": "citron",
+      "dica": "Éclat jaune, explosion d’acidité"
+    },
+    {
+      "palavra": "noix de coco",
+      "dica": "Trésor dur aux eaux cristallines"
+    },
+    {
+      "palavra": "kiwi",
+      "dica": "Petit joyau poilu à l’intérieur émeraude"
+    },
+    {
+      "palavra": "pêche",
+      "dica": "Velours orangé, douceur sucrée"
+    },
+    {
+      "palavra": "cerise",
+      "dica": "Petites perles rouges et brillantes"
+    },
+    {
+      "palavra": "poire",
+      "dica": "Goutte élégante au goût subtil"
+    },
+    {
+      "palavra": "prune",
+      "dica": "Joyau violet, chair juteuse"
+    },
+    {
+      "palavra": "figue",
+      "dica": "Miel doux enveloppé de peau fine"
+    },
+    {
+      "palavra": "mandarine",
+      "dica": "Mini soleil facile à peler"
+    },
+    {
+      "palavra": "goyave",
+      "dica": "Parfum tropical aux graines croquantes"
+    },
+    {
+      "palavra": "fruit de la passion",
+      "dica": "Explosion acidulée des tropiques"
+    },
+    {
+      "palavra": "noix de cajou",
+      "dica": "Joyau courbé du nord-est brésilien"
+    },
+    {
+      "palavra": "açaï",
+      "dica": "Superfruit violet des forêts amazoniennes"
+    },
+    {
+      "palavra": "pitaya",
+      "dica": "Dragon fruit exotique et coloré"
+    },
+    {
+      "palavra": "carambole",
+      "dica": "Étoile fruitée, éclat acidulé"
+    },
+    {
+      "palavra": "jaboticaba",
+      "dica": "Perles noires qui poussent sur le tronc"
+    },
+    {
+      "palavra": "framboise",
+      "dica": "Petit rubis délicat et parfumé"
+    },
+    {
+      "palavra": "mûre",
+      "dica": "Joyau noir profond et sucré"
+    },
+    {
+      "palavra": "myrtille",
+      "dica": "Petite sphère bleue pleine d’antioxydants"
+    },
+    {
+      "palavra": "groseille",
+      "dica": "Perle rouge vif à l’acidité vive"
+    },
+    {
+      "palavra": "canneberge",
+      "dica": "Joyau rouge amer et puissant"
+    },
+    {
+      "palavra": "grenade",
+      "dica": "Trésor rubis aux graines scintillantes"
+    },
+    {
+      "palavra": "abricot",
+      "dica": "Velours orangé, douceur estivale"
+    },
+    {
+      "palavra": "datte",
+      "dica": "Or sucré du désert"
+    },
+    {
+      "palavra": "kaki",
+      "dica": "Soleil doux et velouté"
+    },
+    {
+      "palavra": "nectarine",
+      "dica": "Pêche lisse, reine sans duvet"
+    },
+    {
+      "palavra": "papaye",
+      "dica": "Orange tropicale pleine de vitamines"
+    },
+    {
+      "palavra": "melon",
+      "dica": "Sphère juteuse au parfum envoûtant"
+    },
+    {
+      "palavra": "citrouille",
+      "dica": "Reine orange des récoltes d’automne"
+    }
+  ],
+  "theme": "Maserati Mots Croisés – Édition Prestige 🏎️👑✨🇨🇮",
+  "createur": "yankee Hells 🙂",
+  "description": "Collection de mots pour Mots Croisés Maserati – Niveau luxe, vitesse et élégance ivoirienne. Prêt à défier ton esprit ?"
+    }
