@@ -1,180 +1,156 @@
 /**
- * Menu d'Administration Prestige - Édition Maserati
- * Système de gestion premium pour administrateurs exclusifs
- * Contrôle total avec interface luxe Maserati 🏎️👑🔱✨🇨🇮
+ * Menu Administration Prestige - Édition Maserati
+ * Menu complet de gestion & sécurité – style circuit luxe
+ * Thème Maserati 🏎️👑✨🇨🇮
  * Créé par yankee Hells 🙂
  */
 
-export default async function menuadm(prefix, botName = "maserati-bot", userName = "Administrateur", {
-    header = `╭┈⊰ 🏎️ 『 *${botName}* 』\n┊Accès Administration, #user# !\n╰─┈┈┈┈┈◜👑◞┈┈┈┈┈─╯`,
+export default async function menuadm(
+  prefix,
+  botName = "MaseratiBot",
+  userName = "Pilote",
+  {
+    header = `╭┈⊰ 🏎️ 『 *${botName}* 』\n┊Salut, #user#! Contrôle total du paddock.\n╰─┈┈┈┈┈◜🔱◞┈┈┈┈┈─╯`,
     menuTopBorder = "╭┈",
-    bottomBorder = "╰─┈┈┈┈┈◜👑◞┈┈┈┈┈─╯",
-    menuTitleIcon = "✨🇨🇮▸",
-    menuItemIcon = "•⚜️",
+    bottomBorder = "╰─┈┈┈┈┈◜🔱◞┈┈┈┈┈─╯",
+    menuTitleIcon = "🏁",
+    menuItemIcon = "• 🔹",
     separatorIcon = "🔱",
     middleBorder = "┊",
-    adminMenuTitle = "🛡️ GESTION DES UTILISATEURS",
-    managementMenuTitle = "💬 GESTION DU GROUPE",
-    securityMenuTitle = "🔒 SÉCURITÉ",
-    moderatorsMenuTitle = "👥 MODÉRATEURS",
-    partnershipsMenuTitle = "🤝 PARTENARIATS",
-    activationsMenuTitle = "⚡ ACTIVATIONS",
-    settingsMenuTitle = "🎨 CONFIGURATIONS"
-} = {}) {
-    const formattedHeader = header.replace(/#user#/g, userName);
-    return `${formattedHeader}
+    adminMenuTitle = "🛡️ CONTRÔLE PILOTES & SANCTIONS",
+    managementMenuTitle = "💬 GESTION DU CIRCUIT",
+    securityMenuTitle = "🔒 SÉCURITÉ TRIDENT",
+    moderatorsMenuTitle = "👥 ÉQUIPE MODÉRATION",
+    partnershipsMenuTitle = "🤝 PARTENARIATS OFFICIELS",
+    activationsMenuTitle = "⚡ ACTIVATIONS & MODES",
+    settingsMenuTitle = "🎨 CONFIGURATIONS GLOBALES"
+  } = {}
+) {
+  const formattedHeader = header.replace(/#user#/g, userName);
 
-${menuTopBorder}${separatorIcon} *${adminMenuTitle}*
+  return `${formattedHeader}
+
+\( {menuTopBorder} \){separatorIcon} *${adminMenuTitle}*
 ${middleBorder}
-${middleBorder}${menuItemIcon} ${prefix}ban
-${middleBorder}${menuItemIcon} ${prefix}ban2
-${middleBorder}${menuItemIcon} ${prefix}bam (ban simulé)
-${middleBorder}${menuItemIcon} ${prefix}setbammsg
-${middleBorder}${menuItemIcon} ${prefix}promouvoir
-${middleBorder}${menuItemIcon} ${prefix}rétrograder
-${middleBorder}${menuItemIcon} ${prefix}mute
-${middleBorder}${menuItemIcon} ${prefix}démute
-${middleBorder}${menuItemIcon} ${prefix}mute2
-${middleBorder}${menuItemIcon} ${prefix}démute2
-${middleBorder}${menuItemIcon} ${prefix}avertissement
-${middleBorder}${menuItemIcon} ${prefix}rmavertissement
-${middleBorder}${menuItemIcon} ${prefix}listavertissements
-${middleBorder}${menuItemIcon} ${prefix}nettoyerrang
-${middleBorder}${menuItemIcon} ${prefix}resetrang
-${middleBorder}${menuItemIcon} ${prefix}maintenircompteur
-${middleBorder}${menuItemIcon} ${prefix}activité
-${middleBorder}${menuItemIcon} ${prefix}vérifieractif
+\( {middleBorder} \){menuItemIcon}${prefix}ban           → Bannir pilote
+\( {middleBorder} \){menuItemIcon}${prefix}ban2          → Bannissement renforcé
+\( {middleBorder} \){menuItemIcon}${prefix}bam           → Ban anti-fake
+\( {middleBorder} \){menuItemIcon}${prefix}setbammsg     → Message ban custom
+\( {middleBorder} \){menuItemIcon}${prefix}promouvoir    → Promouvoir admin
+\( {middleBorder} \){menuItemIcon}${prefix}rebaixar      → Rétrograder
+\( {middleBorder} \){menuItemIcon}${prefix}mute          → Muet temporaire
+\( {middleBorder} \){menuItemIcon}${prefix}desmute       → Retirer muet
+\( {middleBorder} \){menuItemIcon}${prefix}mute2         → Muet renforcé
+\( {middleBorder} \){menuItemIcon}${prefix}desmute2      → Retirer muet renforcé
+\( {middleBorder} \){menuItemIcon}${prefix}adv           → Avertissement
+\( {middleBorder} \){menuItemIcon}${prefix}rmadv         → Retirer avertissement
+\( {middleBorder} \){menuItemIcon}${prefix}listadv       → Liste avertissements
+\( {middleBorder} \){menuItemIcon}${prefix}limparrank    → Reset rank global
+\( {middleBorder} \){menuItemIcon}${prefix}resetrank     → Reset rank individuel
+\( {middleBorder} \){menuItemIcon}${prefix}mantercontador → Garder compteur activité
+\( {middleBorder} \){menuItemIcon}${prefix}atividade      → Vérifier activité
+\( {middleBorder} \){menuItemIcon}${prefix}checkativo    → Activité récente
 ${bottomBorder}
 
-${menuTopBorder}${separatorIcon} *🔒 CONTRÔLE D'ACCÈS*
+\( {menuTopBorder} \){separatorIcon} *${securityMenuTitle}*
 ${middleBorder}
-${middleBorder}${menuItemIcon} ${prefix}bloquerutilisateur
-${middleBorder}${menuItemIcon} ${prefix}débloquerutilisateur
-${middleBorder}${menuItemIcon} ${prefix}listebloccagegp
-${middleBorder}${menuItemIcon} ${prefix}ajouterlistenoire
-${middleBorder}${menuItemIcon} ${prefix}supprimerlistenoire
-${middleBorder}${menuItemIcon} ${prefix}listerlistenoire
-${middleBorder}${menuItemIcon} ${prefix}bloccercmd
-${middleBorder}${menuItemIcon} ${prefix}débloccercmd
+\( {middleBorder} \){menuItemIcon}${prefix}blockuser     → Bloquer utilisateur
+\( {middleBorder} \){menuItemIcon}${prefix}unblockuser   → Débloquer
+\( {middleBorder} \){menuItemIcon}${prefix}listblocksgp  → Liste blocs groupe
+\( {middleBorder} \){menuItemIcon}${prefix}addblacklist  → Ajouter blacklist
+\( {middleBorder} \){menuItemIcon}${prefix}delblacklist  → Retirer blacklist
+\( {middleBorder} \){menuItemIcon}${prefix}listblacklist → Liste blacklist
+\( {middleBorder} \){menuItemIcon}${prefix}blockcmd      → Bloquer commande
+\( {middleBorder} \){menuItemIcon}${prefix}unblockcmd    → Débloquer commande
 ${bottomBorder}
 
-${menuTopBorder}${separatorIcon} *${managementMenuTitle}*
+\( {menuTopBorder} \){separatorIcon} *${managementMenuTitle}*
 ${middleBorder}
-${middleBorder}${menuItemIcon} ${prefix}supprimer
-${middleBorder}${menuItemIcon} ${prefix}nettoyer
-${middleBorder}${menuItemIcon} ${prefix}marquer
-${middleBorder}${menuItemIcon} ${prefix}marquercaché
-${middleBorder}${menuItemIcon} ${prefix}tirage
-${middleBorder}${menuItemIcon} ${prefix}nomegp
-${middleBorder}${menuItemIcon} ${prefix}descgroupe
-${middleBorder}${menuItemIcon} ${prefix}photogroupe
-${middleBorder}${menuItemIcon} ${prefix}ajouterrègle
-${middleBorder}${menuItemIcon} ${prefix}supprimerrègle
-${middleBorder}${menuItemIcon} ${prefix}rôle.créer
-${middleBorder}${menuItemIcon} ${prefix}rôle.modifier
-${middleBorder}${menuItemIcon} ${prefix}rôle.supprimer
+\( {middleBorder} \){menuItemIcon}${prefix}del           → Supprimer message
+\( {middleBorder} \){menuItemIcon}${prefix}limpar        → Nettoyer chat
+\( {middleBorder} \){menuItemIcon}${prefix}marcar        → Mention générale
+\( {middleBorder} \){menuItemIcon}${prefix}hidetag       → Mention cachée
+\( {middleBorder} \){menuItemIcon}${prefix}sorteio       → Tirage au sort
+\( {middleBorder} \){menuItemIcon}${prefix}nomegp        → Changer nom groupe
+\( {middleBorder} \){menuItemIcon}${prefix}descgrupo     → Changer description
+\( {middleBorder} \){menuItemIcon}${prefix}fotogrupo     → Changer photo groupe
+\( {middleBorder} \){menuItemIcon}${prefix}addregra      → Ajouter règle
+\( {middleBorder} \){menuItemIcon}${prefix}delregra      → Supprimer règle
+\( {middleBorder} \){menuItemIcon}${prefix}role.criar    → Créer rôle custom
+\( {middleBorder} \){menuItemIcon}${prefix}role.alterar  → Modifier rôle
+\( {middleBorder} \){menuItemIcon}${prefix}role.excluir  → Supprimer rôle
 ${bottomBorder}
 
-${menuTopBorder}${separatorIcon} *⚙️ GROUPE & AUTORISATIONS*
+\( {menuTopBorder} \){separatorIcon} *⚙️ CONTRÔLE ACCÈS & SOLLICITATIONS*
 ${middleBorder}
-${middleBorder}${menuItemIcon} ${prefix}liengp
-${middleBorder}${menuItemIcon} ${prefix}groupe A/F
-${middleBorder}${menuItemIcon} ${prefix}ouvrirgp HH:MM|off
-${middleBorder}${menuItemIcon} ${prefix}fermergp HH:MM|off
-${middleBorder}${menuItemIcon} ${prefix}automsg
-${middleBorder}${menuItemIcon} ${prefix}banghost
-${middleBorder}${menuItemIcon} ${prefix}limitermessage
-${middleBorder}${menuItemIcon} ${prefix}supprimerlimitmessage
-${middleBorder}
-${middleBorder}${menuTitleIcon} *DEMANDES* ${menuTitleIcon}
-${middleBorder}${menuItemIcon} ${prefix}demandes
-${middleBorder}${menuItemIcon} ${prefix}approuver
-${middleBorder}${menuItemIcon} ${prefix}approuver all
-${middleBorder}${menuItemIcon} ${prefix}refuserdemande
+\( {middleBorder} \){menuItemIcon}${prefix}linkgp        → Lien invitation
+\( {middleBorder} \){menuItemIcon}${prefix}grupo A/F     → Ouvrir/Fermer groupe
+\( {middleBorder} \){menuItemIcon}${prefix}opengp HH:MM|off → Auto-ouvrir
+\( {middleBorder} \){menuItemIcon}${prefix}closegp HH:MM|off → Auto-fermer
+\( {middleBorder} \){menuItemIcon}${prefix}solicitacoes  → Liste demandes
+\( {middleBorder} \){menuItemIcon}${prefix}aprovar       → Approuver demande
+\( {middleBorder} \){menuItemIcon}${prefix}aprovar all   → Tout approuver
+\( {middleBorder} \){menuItemIcon}${prefix}recusarsolic  → Refuser demande
 ${bottomBorder}
 
-${menuTopBorder}${separatorIcon} *${moderatorsMenuTitle}*
+\( {menuTopBorder} \){separatorIcon} *${moderatorsMenuTitle}*
 ${middleBorder}
-${middleBorder}${menuItemIcon} ${prefix}ajoutermode
-${middleBorder}${menuItemIcon} ${prefix}supprimermode
-${middleBorder}${menuItemIcon} ${prefix}listemods
-${middleBorder}${menuItemIcon} ${prefix}accorderpermmode
-${middleBorder}${menuItemIcon} ${prefix}révokerpermmode
-${middleBorder}${menuItemIcon} ${prefix}listecommandesmod
+\( {middleBorder} \){menuItemIcon}${prefix}addmod        → Ajouter modérateur
+\( {middleBorder} \){menuItemIcon}${prefix}delmod        → Retirer modérateur
+\( {middleBorder} \){menuItemIcon}${prefix}listmods      → Liste modérateurs
+\( {middleBorder} \){menuItemIcon}${prefix}grantmodcmd   → Donner commande mod
+\( {middleBorder} \){menuItemIcon}${prefix}revokemodcmd  → Retirer commande mod
+\( {middleBorder} \){menuItemIcon}${prefix}listmodcmds   → Commandes mod allouées
 ${bottomBorder}
 
-${menuTopBorder}${separatorIcon} *🛡️ WHITELIST DES ANTI*
+\( {menuTopBorder} \){separatorIcon} *🤝 ${partnershipsMenuTitle}*
 ${middleBorder}
-${middleBorder}${menuItemIcon} ${prefix}wladd
-${middleBorder}${menuItemIcon} ${prefix}wl.supprimer
-${middleBorder}${menuItemIcon} ${prefix}wl.liste
+\( {middleBorder} \){menuItemIcon}${prefix}parcerias     → Liste partenariats
+\( {middleBorder} \){menuItemIcon}${prefix}addparceria   → Ajouter partenaire
+\( {middleBorder} \){menuItemIcon}${prefix}delparceria   → Retirer partenaire
 ${bottomBorder}
 
-${menuTopBorder}${separatorIcon} *${partnershipsMenuTitle}*
+\( {menuTopBorder} \){separatorIcon} *${activationsMenuTitle}*
 ${middleBorder}
-${middleBorder}${menuItemIcon} ${prefix}partenariats
-${middleBorder}${menuItemIcon} ${prefix}ajouterpartenariat
-${middleBorder}${menuItemIcon} ${prefix}supprimerpartenariat
+\( {middleBorder} \){menuItemIcon}${prefix}antiflood     → Anti-flood ON/OFF
+\( {middleBorder} \){menuItemIcon}${prefix}antidoc       → Anti-document
+\( {middleBorder} \){menuItemIcon}${prefix}antiloc       → Anti-localisation
+\( {middleBorder} \){menuItemIcon}${prefix}antifig       → Anti-sticker
+\( {middleBorder} \){menuItemIcon}${prefix}antibtn       → Anti-bouton
+\( {middleBorder} \){menuItemIcon}${prefix}antilinkgp    → Anti-lien groupe
+\( {middleBorder} \){menuItemIcon}${prefix}antilinkcanal → Anti-lien canal
+\( {middleBorder} \){menuItemIcon}${prefix}antilinkhard  → Anti-lien strict
+\( {middleBorder} \){menuItemIcon}${prefix}antilinksoft  → Anti-lien soft
+\( {middleBorder} \){menuItemIcon}${prefix}antiporn      → Anti-porn
+\( {middleBorder} \){menuItemIcon}${prefix}antistatus    → Anti-status
+\( {middleBorder} \){menuItemIcon}${prefix}antitoxic     → Anti-toxicité
+\( {middleBorder} \){menuItemIcon}${prefix}antipalavra   → Anti-mots interdits
 ${bottomBorder}
 
-${menuTopBorder}${separatorIcon} *${securityMenuTitle} & PROTECTION*
+\( {menuTopBorder} \){separatorIcon} *${settingsMenuTitle}*
 ${middleBorder}
-${middleBorder}${menuItemIcon} ${prefix}antiflood
-${middleBorder}${menuItemIcon} ${prefix}antidoc
-${middleBorder}${menuItemIcon} ${prefix}antiloc
-${middleBorder}${menuItemIcon} ${prefix}antifig
-${middleBorder}${menuItemIcon} ${prefix}antibtn
-${middleBorder}${menuItemIcon} ${prefix}antiliengp
-${middleBorder}${menuItemIcon} ${prefix}antiliencanal
-${middleBorder}${menuItemIcon} ${prefix}antilienhard
-${middleBorder}${menuItemIcon} ${prefix}antiliensoft
-${middleBorder}${menuItemIcon} ${prefix}antiporn
-${middleBorder}${menuItemIcon} ${prefix}antistatus
-${middleBorder}${menuItemIcon} ${prefix}antitoxique <on/off>
-${middleBorder}${menuItemIcon} ${prefix}antitoxique config <action>
-${middleBorder}${menuItemIcon} ${prefix}antitoxique sensibilité <0-100>
-${middleBorder}${menuItemIcon} ${prefix}antimot <on/off/add/del/list>
+\( {middleBorder} \){menuItemIcon}${prefix}legendasaiu   → Message départ
+\( {middleBorder} \){menuItemIcon}${prefix}legendabv     → Message bienvenue
+\( {middleBorder} \){menuItemIcon}${prefix}fotobv        → Photo bienvenue
+\( {middleBorder} \){menuItemIcon}${prefix}rmfotobv      → Supprimer photo BV
+\( {middleBorder} \){menuItemIcon}${prefix}fotosaiu      → Photo départ
+\( {middleBorder} \){menuItemIcon}${prefix}rmfotosaiu    → Supprimer photo départ
+\( {middleBorder} \){menuItemIcon}${prefix}setprefix     → Changer préfixe
 ${bottomBorder}
 
-${menuTopBorder}${separatorIcon} *${settingsMenuTitle}*
+\( {menuTopBorder} \){separatorIcon} *💬 AUTO-RÉPONSES & MODES*
 ${middleBorder}
-${middleBorder}${menuItemIcon} ${prefix}légendesortie
-${middleBorder}${menuItemIcon} ${prefix}légendebv
-${middleBorder}${menuItemIcon} ${prefix}photobv
-${middleBorder}${menuItemIcon} ${prefix}rmphotobv
-${middleBorder}${menuItemIcon} ${prefix}photosortie
-${middleBorder}${menuItemIcon} ${prefix}rmphotosortie
-${middleBorder}${menuItemIcon} ${prefix}setprefix
+\( {middleBorder} \){menuItemIcon}${prefix}addautoadm    → Ajouter auto-réponse admin
+\( {middleBorder} \){menuItemIcon}${prefix}autorespostas → Gestion auto-réponses
+\( {middleBorder} \){menuItemIcon}${prefix}modobn        → Mode blacklist
+\( {middleBorder} \){menuItemIcon}${prefix}modoparceria  → Mode partenariat
+\( {middleBorder} \){menuItemIcon}${prefix}modorpg       → Mode RPG
+\( {middleBorder} \){menuItemIcon}${prefix}modolite      → Mode léger
+\( {middleBorder} \){menuItemIcon}${prefix}bemvindo      → Message bienvenue
+\( {middleBorder} \){menuItemIcon}${prefix}saida         → Message départ
+\( {middleBorder} \){menuItemIcon}${prefix}autosticker   → Auto-sticker
+\( {middleBorder} \){menuItemIcon}${prefix}soadm         → Groupe admins only
+\( {middleBorder} \){menuItemIcon}${prefix}cmdlimit      → Limite commandes
 ${bottomBorder}
-
-${menuTopBorder}${separatorIcon} *💬 RÉPONSES AUTOMATIQUES*
-${middleBorder}
-${middleBorder}${menuItemIcon} ${prefix}ajouterautoadm
-${middleBorder}${menuItemIcon} ${prefix}ajouterautoadmidia
-${middleBorder}${menuItemIcon} ${prefix}listerautoadm
-${middleBorder}${menuItemIcon} ${prefix}supprimerautoadm
-${middleBorder}${menuItemIcon} ${prefix}autoresponses
-${middleBorder}${menuItemIcon} ${prefix}autorepo
-${bottomBorder}
-
-${menuTopBorder}${separatorIcon} *${activationsMenuTitle} & MODES*
-${middleBorder}
-${middleBorder}${menuItemIcon} ${prefix}autodl
-${middleBorder}${menuItemIcon} ${prefix}minmessage
-${middleBorder}${menuItemIcon} ${prefix}assistant
-${middleBorder}${menuItemIcon} ${prefix}modobn
-${middleBorder}${menuItemIcon} ${prefix}modepartenariat
-${middleBorder}${menuItemIcon} ${prefix}moderpg
-${middleBorder}${menuItemIcon} ${prefix}modelite
-${middleBorder}${menuItemIcon} ${prefix}bienvenue
-${middleBorder}${menuItemIcon} ${prefix)sortie
-${middleBorder}${menuItemIcon} ${prefix)autocollant
-${middleBorder}${menuItemIcon} ${prefix)soadm
-${middleBorder}${menuItemIcon} ${prefix)limitecmd
-${middleBorder}${menuItemIcon} ${prefix)photomenugroupe
-${middleBorder}${menuItemIcon} ${prefix)nomegp
-${middleBorder}${menuItemIcon} ${prefix)infoperso
-${bottomBorder}
-
-*Système d'administration exclusif conçu par yankee Hells* 🏎️👑🔱`;
+`;
 }
