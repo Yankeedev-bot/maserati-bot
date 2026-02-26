@@ -1,357 +1,145 @@
 /**
- * Garage Central de la Base de Données Prestige - Édition Maserati
- * Gestion ultra-sécurisée des JSON, économie, RPG, groupes & pilotes – V12 boosté
+ * Cache JID → LID Prestige - Édition Maserati
+ * Cache en mémoire ultra-rapide pour conversion JID → LID – accès turbo paddock
  * Thème Maserati 🏎️👑✨🇨🇮
  * Créé par yankee Hells 🙂
  */
 
 import fs from 'fs/promises';
+import fsSync from 'fs';
 import path from 'path';
-import crypto from 'crypto';
-import { assurerDossierExiste, assurerFichierJsonExiste, chargerJsonFichier, normaliser, obtenirNomPilote, estIdGroupe, estIdUtilisateur, estLidValide, estJidValide, construireIdUtilisateur, obtenirLidDeJidCache, idsCorrespondent, chargerJsonFichierSecurise, sauvegarderJsonFichierSecurise, validerUtilisateurLeveling, validerUtilisateurEconomie, validerDonneesGroupe, creerSauvegarde, normaliserParam, comparerParams, trouverCleIgnorantAccents, trouverDansTableauIgnorantAccents, resoudreAliasParam, matcherParam, ALIAS_PARAMS } from './helpers.js';
-import {
-  DOSSIER_DATABASE,
-  DOSSIER_GROUPES,
-  DOSSIER_UTILISATEURS,
-  DOSSIER_PROPRIETAIRE,
-  DOSSIER_PARTENARIATS,
-  DOSSIER_TMP,
-  FICHIER_LEVELING,
-  FICHIER_AUTOREPONSES_CUSTOM,
-  FICHIER_DIVULGACAO,
-  FICHIER_DIVULGACAO_PROPRIETAIRE,
-  FICHIER_COMMANDES_SANS_PREFIXE,
-  FICHIER_ALIAS_COMMANDES,
-  FICHIER_BLACKLIST_GLOBALE,
-  FICHIER_DESIGN_MENU,
-  FICHIER_ECONOMIE,
-  FICHIER_MSGPREFIXE,
-  FICHIER_MSGBOTACTIF,
-  FICHIER_REACTIONS_CUSTOM,
-  FICHIER_RAPPELS,
-  FICHIER_CMD_NON_TROUVE,
-  FICHIER_ANTIFLOOD,
-  FICHIER_ANTIPV,
-  FICHIER_BLOCS_GLOBAUX,
-  FICHIER_LIMITE_COMMANDES,
-  FICHIER_LIMITES_UTILISATEURS_COMMANDES,
-  FICHIER_ANTISPAM,
-  FICHIER_ETAT_BOT,
-  FICHIER_HORAIRES_AUTO,
-  FICHIER_MODE_LITE,
-  FICHIER_SOUS_PROPRIETAIRES,
-  FICHIER_LOCATIONS,
-  FICHIER_CODES_ACTIVATION,
-  FICHIER_RELATIONS,
-  FICHIER_COMMANDES_CUSTOM,
-  FICHIER_PERSONNALISATION_GROUPE,
-  FICHIER_AUDIO_MENU,
-  FICHIER_LERMAIS_MENU,
-  FICHIER_TICKETS_SUPPORT,
-  FICHIER_CONFIG
-} from './chemins.js';
+import { fileURLToPath } from 'url';
 
-// Assurance garages prestige – dossiers & fichiers prêts au démarrage
-assurerDossierExiste(DOSSIER_GROUPES);
-assurerDossierExiste(DOSSIER_UTILISATEURS);
-assurerDossierExiste(DOSSIER_PROPRIETAIRE);
-assurerDossierExiste(DOSSIER_PARTENARIATS);
-assurerFichierJsonExiste(FICHIER_ANTIFLOOD);
-assurerFichierJsonExiste(FICHIER_LIMITE_COMMANDES, {
-  commandes: {},
-  utilisateurs: {}
-});
-assurerFichierJsonExiste(FICHIER_LIMITES_UTILISATEURS_COMMANDES, {
-  commandes: {},
-  utilisateurs: {}
-});
-assurerFichierJsonExiste(FICHIER_ANTISPAM, {
-  actif: false,
-  limite: 5,
-  intervalle: 10,
-  tempsBlocage: 600,
-  utilisateurs: {},
-  blocs: {}
-});
-assurerFichierJsonExiste(FICHIER_ANTIPV, {
-  mode: 'off',
-  message: '🚫 Cette commande fonctionne seulement en groupes !'
-});
-assurerFichierJsonExiste(DOSSIER_PROPRIETAIRE + '/premium.json');
-assurerFichierJsonExiste(DOSSIER_PROPRIETAIRE + '/bangp.json');
-assurerFichierJsonExiste(FICHIER_BLOCS_GLOBAUX, {
-  commandes: {},
-  utilisateurs: {}
-});
-assurerFichierJsonExiste(FICHIER_ETAT_BOT, {
-  statut: 'actif'
-});
-assurerFichierJsonExiste(FICHIER_MODE_LITE, {
-  statut: false
-});
-assurerDossierExiste(DOSSIER_TMP);
-assurerFichierJsonExiste(FICHIER_AUTOREPONSES_CUSTOM, {
-  reponses: []
-});
-assurerFichierJsonExiste(FICHIER_COMMANDES_SANS_PREFIXE, {
-  commandes: []
-});
-assurerFichierJsonExiste(FICHIER_ALIAS_COMMANDES, {
-  alias: []
-});
-assurerFichierJsonExiste(FICHIER_COMMANDES_CUSTOM, {
-  commandes: []
-});
-assurerFichierJsonExiste(FICHIER_BLACKLIST_GLOBALE, {
-  utilisateurs: {},
-  groupes: {}
-});
-assurerFichierJsonExiste(FICHIER_DIVULGACAO_PROPRIETAIRE, {
-  groupes: [],
-  message: '',
-  planification: {
-    actif: false,
-    heure: null,
-    dernierLancement: null
-  },
-  stats: {
-    totalEnvoye: 0,
-    dernierManuel: null,
-    dernierAuto: null
-  },
-  creeLe: new Date().toISOString()
-});
-assurerFichierJsonExiste(FICHIER_DESIGN_MENU, {
-  header: `╭┈⊰ 🏎️ 『 *{nomBot}* 』\n┊Salut, {nomUtilisateur} !\n╰─┈┈┈┈┈◜🔱◞┈┈┈┈┈─╯`,
-  bordureSupMenu: "╭┈",
-  bordureInf: "╰─┈┈┈┈┈◜🔱◞┈┈┈┈┈─╯",
-  iconeTitreMenu: "🏆",
-  iconeElementMenu: "• 🔹",
-  iconeSeparateur: "🔱",
-  bordureCentrale: "┊"
-});
-assurerFichierJsonExiste(FICHIER_ECONOMIE, {
-  utilisateurs: {},
-  boutique: {
-    "picareta_bronze": { nom: "Pioche de Bronze", prix: 500, type: "outil", typeOutil: "pioche", niveau: "bronze", durabilite: 20, effet: { bonusMine: 0.1 } },
-    "picareta_fer": { nom: "Pioche de Fer", prix: 1500, type: "outil", typeOutil: "pioche", niveau: "fer", durabilite: 60, effet: { bonusMine: 0.25 } },
-    "picareta_diamant": { nom: "Pioche de Diamant", prix: 5000, type: "outil", typeOutil: "pioche", niveau: "diamant", durabilite: 150, effet: { bonusMine: 0.5 } },
-    "kit_reparation": { nom: "Kit de Réparation", prix: 350, type: "consommable", effet: { reparation: 40 } },
-    "coffre": { nom: "Coffre", prix: 1000, type: "stockage" }
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Cache global prestige : Map<JID, LID> – garage mémoire rapide
+let cacheMemoireJidLid = new Map();
+let fichierCacheJidLid = null;
+let cacheModifie = false;
+let timeoutSauvegardeCache = null;
+
+// Initialisation chemin cache – démarrage garage
+function initialiserCacheJidLid(cheminFichierCache) {
+  fichierCacheJidLid = cheminFichierCache;
+
+  // Chargement cache existant depuis fichier – reprise circuit
+  try {
+    if (fsSync.existsSync(cheminFichierCache)) {
+      const data = JSON.parse(fsSync.readFileSync(cheminFichierCache, 'utf-8'));
+      cacheMemoireJidLid = new Map(Object.entries(data.mappings || {}));
+      console.log(`[Maserati-CacheJidLid] Cache chargé : ${cacheMemoireJidLid.size} entrées prestige`);
+    }
+  } catch (erreur) {
+    console.warn(`[Maserati-CacheJidLid] Erreur chargement cache : ${erreur.message}`);
   }
-});
-assurerFichierJsonExiste(FICHIER_MSGPREFIXE);
-assurerFichierJsonExiste(FICHIER_MSGBOTACTIF);
-assurerFichierJsonExiste(FICHIER_REACTIONS_CUSTOM, {
-  reactions: []
-});
-assurerFichierJsonExiste(FICHIER_RAPPELS, {
-  rappels: []
-});
-assurerFichierJsonExiste(FICHIER_CMD_NON_TROUVE, {
-  actif: false,
-  message: 'Commande non trouvée'
-});
-assurerFichierJsonExiste(FICHIER_ANTIFLOOD);
-assurerFichierJsonExiste(FICHIER_ANTIPV);
-assurerFichierJsonExiste(FICHIER_BLOCS_GLOBAUX, {
-  commandes: {},
-  utilisateurs: {}
-});
-assurerFichierJsonExiste(FICHIER_ETAT_BOT, {
-  statut: 'actif'
-});
-assurerFichierJsonExiste(FICHIER_MODE_LITE, {
-  statut: false
-});
-assurerFichierJsonExiste(FICHIER_SOUS_PROPRIETAIRES, {
-  sousProprietaires: []
-});
-assurerFichierJsonExiste(FICHIER_LOCATIONS, {
-  modeActif: false,
-  locations: {}
-});
-assurerFichierJsonExiste(FICHIER_CODES_ACTIVATION, {
-  codes: {}
-});
-assurerFichierJsonExiste(FICHIER_RELATIONS, {
-  relations: {}
-});
-assurerFichierJsonExiste(FICHIER_COMMANDES_CUSTOM);
-assurerFichierJsonExiste(FICHIER_PERSONNALISATION_GROUPE, {
-  personnalisations: {}
-});
-assurerFichierJsonExiste(FICHIER_AUDIO_MENU);
-assurerFichierJsonExiste(FICHIER_LERMAIS_MENU);
-assurerFichierJsonExiste(FICHIER_TICKETS_SUPPORT, {
-  tickets: {}
-});
-assurerFichierJsonExiste(FICHIER_CONFIG, {
-  config: {}
-});
 
-// Fonctions prestige exportées
+  // Sauvegarde auto périodique (toutes les 5 min si modifs) – maintenance paddock
+  setInterval(() => {
+    if (cacheModifie) {
+      sauvegarderCacheJidLid();
+    }
+  }, 5 * 60 * 1000);
+}
+
+// Sauvegarde cache sur disque avec debounce – anti-surcharge turbo
+function sauvegarderCacheJidLid(force = false) {
+  if (!fichierCacheJidLid || (!cacheModifie && !force)) return;
+
+  // Debounce : groupe sauvegardes en 3 secondes – fluidité circuit
+  if (!force && timeoutSauvegardeCache) {
+    clearTimeout(timeoutSauvegardeCache);
+  }
+
+  const executerSauvegarde = () => {
+    try {
+      const data = {
+        version: '1.0',
+        derniereMiseAJour: new Date().toISOString(),
+        mappings: Object.fromEntries(cacheMemoireJidLid)
+      };
+
+      const cheminDossier = path.dirname(fichierCacheJidLid);
+      if (!fsSync.existsSync(cheminDossier)) {
+        fsSync.mkdirSync(cheminDossier, { recursive: true });
+      }
+
+      fsSync.writeFileSync(fichierCacheJidLid, JSON.stringify(data, null, 2));
+      cacheModifie = false;
+    } catch (erreur) {
+      console.error(`[Maserati-CacheJidLid] Erreur sauvegarde : ${erreur.message}`);
+    }
+  };
+
+  if (force) {
+    executerSauvegarde();
+  } else {
+    timeoutSauvegardeCache = setTimeout(executerSauvegarde, 3000);
+  }
+}
+
+// Recherche LID depuis cache ou onWhatsApp – accès rapide prestige
+async function obtenirLidDeJidCache(nazu, jid) {
+  if (!estJidValide(jid)) {
+    return jid; // Déjà LID ou autre format
+  }
+
+  // 1. Vérification cache mémoire d’abord (turbo rapide)
+  if (cacheMemoireJidLid.has(jid)) {
+    const lidCache = cacheMemoireJidLid.get(jid);
+    // Retire :XX si présent dans cache
+    return lidCache.includes(':') ? lidCache.split(':')[0] + '@lid' : lidCache;
+  }
+
+  // 2. Absent du cache ? Recherche via API – scan paddock
+  try {
+    const resultat = await nazu.onWhatsApp(jid);
+    if (resultat && resultat[0] && resultat[0].lid) {
+      let lid = resultat[0].lid;
+
+      // Retire :XX si présent
+      if (lid.includes(':')) {
+        lid = lid.split(':')[0] + '@lid';
+      }
+
+      // Ajoute au cache – mise à jour garage
+      cacheMemoireJidLid.set(jid, lid);
+      cacheModifie = true;
+
+      // Debounce auto sauvegardera
+
+      return lid;
+    }
+  } catch (erreur) {
+    console.warn(`[Maserati-CacheJidLid] Erreur recherche LID pour ${jid} : ${erreur.message}`);
+  }
+
+  // 3. Fallback : retourne JID original – sécurité circuit
+  return jid;
+}
+
+// Conversion batch IDs (JID/LID) → LID – traitement parallèle prestige
+async function convertirIdsEnLid(nazu, ids) {
+  if (!Array.isArray(ids) || ids.length === 0) return [];
+
+  const convertis = [];
+
+  // Traitement parallèle (batch de 5 – évite surcharge V8)
+  const tailleBatch = 5;
+  for (let i = 0; i < ids.length; i += tailleBatch) {
+    const batch = ids.slice(i, i + tailleBatch);
+    const promessesBatch = batch.map(id => obtenirLidDeJidCache(nazu, id));
+    const resultatsBatch = await Promise.all(promessesBatch);
+    convertis.push(...resultatsBatch);
+  }
+
+  return convertis;
+}
+
+// Export prestige – garage accessible
 export {
-  executerAutoTestBaseDonnees,
-  chargerMsgPrefixe,
-  sauvegarderMsgPrefixe,
-  chargerMsgBotActif,
-  sauvegarderMsgBotActif,
-  chargerConfigCmdNonTrouvee,
-  sauvegarderConfigCmdNonTrouvee,
-  validerModeleMessage,
-  formaterMessageAvecFallback,
-  chargerReactionsCustom,
-  sauvegarderReactionsCustom,
-  chargerRappels,
-  sauvegarderRappels,
-  ajouterReactionCustom,
-  supprimerReactionCustom,
-  chargerDivulgacao,
-  sauvegarderDivulgacao,
-  chargerDivulgacaoProprietaire,
-  sauvegarderDivulgacaoProprietaire,
-  chargerSousProprietaires,
-  sauvegarderSousProprietaires,
-  estSousProprietaire,
-  ajouterSousProprietaire,
-  retirerSousProprietaire,
-  obtenirSousProprietaires,
-  chargerDonneesLocations,
-  sauvegarderDonneesLocations,
-  estModeLocationActif,
-  definirModeLocation,
-  obtenirStatutLocationGroupe,
-  definirLocationGroupe,
-  chargerCodesActivation,
-  sauvegarderCodesActivation,
-  genererCodeActivation,
-  validerCodeActivation,
-  utiliserCodeActivation,
-  prolongerLocationGroupe,
-  estModeLiteActif,
-  chargerDonneesPartenariats,
-  sauvegarderDonneesPartenariats,
-  calculerXpProchainNiveau,
-  obtenirBrevet,
-  chargerEconomie,
-  sauvegarderEconomie,
-  obtenirUtilisateurEco,
-  creerUtilisateurEcoDefaut,
-  migrerEtValiderUtilisateurEco,
-  migrerEtValiderPet,
-  diagnostiquerBaseDonnees,
-  analyserMontant,
-  formater,
-  tempsRestant,
-  appliquerBonusBoutique,
-  MULTI_NIVEAU_PIOCHE,
-  ORDRE_NIVEAU_PIOCHE,
-  ARTICLES_BOUTIQUE,
-  obtenirPiocheActive,
-  assurerDefautsEconomie,
-  donnerMateriel,
-  genererDefiQuotidien,
-  assurerDefiUtilisateur,
-  mettreAJourDefi,
-  estDefiComplete,
-  mettreAJourProgressionQuete,
-  LISTE_COMPETENCES,
-  assurerCompetencesUtilisateur,
-  xpPourProchainCompetence,
-  ajouterXpCompetence,
-  obtenirBonusCompetence,
-  horodatageFinSemaine,
-  horodatageFinMois,
-  genererDefiHebdomadaire,
-  genererDefiMensuel,
-  assurerDefisPeriodeUtilisateur,
-  mettreAJourDefiPeriode,
-  estPeriodeComplete,
-  verifierMonteeNiveau,
-  verifierDescenteNiveau,
-  chargerAutoreponsesCustom,
-  sauvegarderAutoreponsesCustom,
-  chargerAutoreponsesGroupe,
-  sauvegarderAutoreponsesGroupe,
-  ajouterAutoreponse,
-  supprimerAutoreponse,
-  traiterAutoreponse,
-  envoyerAutoreponse,
-  chargerCommandesCustom,
-  sauvegarderCommandesCustom,
-  retirerCommandeCustom,
-  trouverCommandeCustom,
-  chargerCommandesSansPrefixe,
-  sauvegarderCommandesSansPrefixe,
-  chargerAliasCommandes,
-  sauvegarderAliasCommandes,
-  chargerBlacklistGlobale,
-  sauvegarderBlacklistGlobale,
-  ajouterBlacklistGlobale,
-  retirerBlacklistGlobale,
-  obtenirBlacklistGlobale,
-  chargerDesignMenu,
-  sauvegarderDesignMenu,
-  obtenirDesignMenuAvecDefauts,
-  chargerRelations,
-  sauvegarderRelations,
-  chargerTicketsSupport,
-  sauvegarderTicketsSupport,
-  definirModeSupport,
-  trouverTicketSupportParId,
-  creerTicketSupport,
-  accepterTicketSupport,
-  // Fonctions limites commandes
-  chargerLimitesCommandes,
-  sauvegarderLimitesCommandes,
-  ajouterLimiteCommande,
-  retirerLimiteCommande,
-  obtenirLimitesCommandes,
-  verifierLimiteCommande,
-  analyserCadreTemporel,
-  formaterTempsRestant,
-  // Fonctions sécurité JSON
-  chargerJsonFichierSecurise,
-  sauvegarderJsonFichierSecurise,
-  validerUtilisateurLeveling,
-  validerUtilisateurEconomie,
-  validerDonneesGroupe,
-  creerSauvegarde,
-  // Fonctions leveling sécurisées
-  chargerLevelingSecurise,
-  sauvegarderLevelingSecurise,
-  obtenirUtilisateurLeveling,
-  BREVETS_DEFAUT,
-  STRUCTURE_LEVELING_DEFAUT,
-  // Fonctions normalisation paramètres
-  normaliserParam,
-  comparerParams,
-  trouverCleIgnorantAccents,
-  trouverDansTableauIgnorantAccents,
-  resoudreAliasParam,
-  matcherParam,
-  ALIAS_PARAMS,
-  // Système personnalisation groupe
-  chargerPersonnalisationGroupe,
-  sauvegarderPersonnalisationGroupe,
-  estPersonnalisationGroupeActive,
-  definirPersonnalisationGroupeActive,
-  obtenirPersonnalisationGroupe,
-  definirNomGroupeCustom,
-  definirPhotoGroupeCustom,
-  retirerNomGroupeCustom,
-  retirerPhotoGroupeCustom,
-  // Système audio menu
-  chargerAudioMenu,
-  sauvegarderAudioMenu,
-  estAudioMenuActif,
-  obtenirCheminAudioMenu,
-  definirAudioMenu,
-  retirerAudioMenu,
-  // Système lire plus menu
-  chargerLerMaisMenu,
-  estLerMaisMenuActif,
-  definirLerMaisMenu,
-  obtenirTexteLerMaisMenu
+  initialiserCacheJidLid,
+  sauvegarderCacheJidLid,
+  obtenirLidDeJidCache,
+  convertirIdsEnLid
 };
