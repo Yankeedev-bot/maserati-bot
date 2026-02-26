@@ -143,3 +143,127 @@ export {
   obtenirLidDeJidCache,
   convertirIdsEnLid
 };
+/**
+ * Outils Parsing & Validation Params Prestige - Édition Maserati
+ * Analyse arguments chaînes, escape RegExp & normalisation/validation params – précision trident
+ * Thème Maserati 🏎️👑✨🇨🇮
+ * Créé par yankee Hells 🙂
+ */
+
+// Analyse arguments depuis chaîne – extraction turbo
+function analyserArgsDeChaine(chaine) {
+  if (!chaine || typeof chaine !== 'string') return [];
+
+  // Retire préfixe si présent – nettoyage paddock
+  chaine = chaine.trim();
+
+  // Gestion guillemets simples/doubles – arguments composés
+  const args = [];
+  let courant = '';
+  let enGuillemets = false;
+  let guillemetType = null;
+
+  for (let i = 0; i < chaine.length; i++) {
+    const char = chaine[i];
+
+    if (char === ' ' && !enGuillemets) {
+      if (courant.trim()) {
+        args.push(courant.trim());
+      }
+      courant = '';
+    } else if ((char === '"' || char === "'") && !enGuillemets) {
+      enGuillemets = true;
+      guillemetType = char;
+    } else if (char === guillemetType && enGuillemets) {
+      enGuillemets = false;
+      guillemetType = null;
+      if (courant.trim()) {
+        args.push(courant.trim());
+      }
+      courant = '';
+    } else {
+      courant += char;
+    }
+  }
+
+  if (courant.trim()) {
+    args.push(courant.trim());
+  }
+
+  return args;
+}
+
+// Échappe chaîne pour RegExp sécurisée – blindage prestige
+function echapperRegExp(chaine) {
+  if (!chaine || typeof chaine !== 'string') return '';
+  return chaine.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// Normalise nom paramètre : minuscule, sans accents, espaces → underscores, seulement a-z0-9_ – format paddock
+function normaliserNomParam(chaine) {
+  if (!chaine || typeof chaine !== 'string') return '';
+  const n = normaliser(chaine || '');
+  return n.replace(/[^a-z0-9_]/g, '_');
+}
+
+// Valide valeur paramètre contre définition – vérification trident
+function validerValeurParam(valeur, def = {}) {
+  if (typeof def !== 'object') return { ok: true };
+  const type = def.type || 'chaine';
+  
+  // Défaut si valeur vide/absente
+  if ((typeof valeur === 'undefined' || valeur === null || valeur === '') && typeof def.defaut !== 'undefined') {
+    valeur = def.defaut;
+  }
+
+  // Requis ?
+  if ((typeof valeur === 'undefined' || valeur === null || valeur === '') && def.requis) {
+    return { ok: false, message: `Paramètre ${def.nom} obligatoire.` };
+  }
+
+  if (typeof valeur === 'undefined' || valeur === null || valeur === '') return { ok: true };
+
+  switch (type) {
+    case 'entier': {
+      const n = Number(valeur);
+      if (isNaN(n) || !Number.isInteger(n)) return { ok: false, message: `Paramètre ${def.nom} doit être entier.` };
+      if (def.min !== undefined && n < def.min) return { ok: false, message: `Paramètre ${def.nom} >= ${def.min}.` };
+      if (def.max !== undefined && n > def.max) return { ok: false, message: `Paramètre ${def.nom} <= ${def.max}.` };
+      return { ok: true };
+    }
+    case 'flottant':
+    case 'nombre': {
+      const n = Number(valeur);
+      if (isNaN(n)) return { ok: false, message: `Paramètre ${def.nom} doit être numérique.` };
+      if (def.min !== undefined && n < def.min) return { ok: false, message: `Paramètre ${def.nom} >= ${def.min}.` };
+      if (def.max !== undefined && n > def.max) return { ok: false, message: `Paramètre ${def.nom} <= ${def.max}.` };
+      return { ok: true };
+    }
+    case 'booleen': {
+      const lv = ('' + valeur).toLowerCase();
+      if (!['true', 'false', '1', '0', 'oui', 'non', 'sim', 'nao', 'não'].includes(lv)) {
+        return { ok: false, message: `Paramètre ${def.nom} doit être booléen (true/false).` };
+      }
+      return { ok: true };
+    }
+    case 'regex': {
+      try {
+        const re = new RegExp(def.motif);
+        return re.test(valeur) ? { ok: true } : { ok: false, message: `Paramètre ${def.nom} ne correspond pas au motif.` };
+      } catch (e) {
+        return { ok: false, message: `Motif regex invalide : ${def.motif}` };
+      }
+    }
+    case 'enum': {
+      if (Array.isArray(def.enum) && def.enum.length && !def.enum.includes(valeur)) {
+        return { ok: false, message: `Paramètre ${def.nom} doit être parmi : ${def.enum.join(', ')}` };
+      }
+      return { ok: true };
+    }
+    default:
+      // chaine, accepte par défaut
+      return { ok: true };
+  }
+}
+
+export { analyserArgsDeChaine, echapperRegExp, normaliserNomParam, validerValeurParam };
